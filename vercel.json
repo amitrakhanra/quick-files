@@ -1,0 +1,68 @@
+{
+  "rewrites": [
+    {
+      "source": "/jpg-to-pdf",
+      "destination": "/jpg-to-pdf.html"
+    },
+    {
+      "source": "/pdf-to-jpg",
+      "destination": "/pdf-to-jpg.html"
+    },
+    {
+      "source": "/merge-pdf",
+      "destination": "/merge-pdf.html"
+    },
+    {
+      "source": "/compress-pdf",
+      "destination": "/compress-pdf.html"
+    },
+    {
+      "source": "/lock-pdf",
+      "destination": "/lock-pdf.html"
+    },
+    {
+      "source": "/unlock-pdf",
+      "destination": "/unlock-pdf.html"
+    },
+    {
+      "source": "/rotate-pdf",
+      "destination": "/rotate-pdf.html"
+    },
+    {
+      "source": "/split-pdf",
+      "destination": "/split-pdf.html"
+    },
+    {
+      "source": "/resize-image",
+      "destination": "/resize-image.html"
+    },
+    {
+      "source": "/image-to-jpg",
+      "destination": "/image-to-jpg.html"
+    },
+    {
+      "source": "/pdf-to-word",
+      "destination": "/pdf-to-word.html"
+    },
+    {
+      "source": "/add-watermark-to-pdf",
+      "destination": "/add-watermark-to-pdf.html"
+    },
+    {
+      "source": "/add-page-numbers-to-pdf",
+      "destination": "/add-page-numbers-to-pdf.html"
+    },
+    {
+      "source": "/remove-pdf-pages",
+      "destination": "/remove-pdf-pages.html"
+    },
+    {
+      "source": "/compress-image",
+      "destination": "/compress-image.html"
+    },
+    {
+      "source": "/pdf-to-text",
+      "destination": "/pdf-to-text.html"
+    }
+  ]
+}
