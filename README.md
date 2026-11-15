@@ -41,6 +41,7 @@ An internet connection is needed to load these libraries.
 ```
 index.html                      Home page
 <tool-name>.html                One page per tool and preset (23 pages)
+
 style.css                       Shared styles
 app.js                          Shared tool logic and cookie notice
 privacy.html                    Privacy and cookie policy
