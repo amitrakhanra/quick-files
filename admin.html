@@ -23,4 +23,5 @@ c.append(m,t,r);return c}
 function show(items,mode){const l=$('list');l.replaceChildren();if(!items.length){say(mode==='pending'?'Nothing is waiting.':'Nothing approved on this page.');return}items.forEach(x=>l.append(card(x,mode)))}
 $('go').onclick=async()=>{say('Loading…');try{const j=await api({action:'pending'});say(`${j.total} waiting${j.total>j.items.length?' (showing the newest '+j.items.length+')':''}.`);show(j.items,'pending');if(!j.items.length)say('Nothing is waiting.')}catch(e){say(e.message,1)}};
 $('ap').onclick=async()=>{say('Loading…');try{const j=await api({action:'approved',tool:$('tool').value});show(j.items,'approved')}catch(e){say(e.message,1)}};
-</script></main></body></html>
+</script></main><script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+</body></html>
