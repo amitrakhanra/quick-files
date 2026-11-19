@@ -7,8 +7,8 @@
 <body><main>
 <p><a href="/">← Back to QuickFile</a></p>
 <h1>Privacy &amp; Cookie Policy</h1>
-<p class="meta">Last updated: November 12, 2026</p>
-<div class="box"><strong>In short:</strong> QuickFile has no accounts, no ads and no analytics. Your files are processed inside your browser and are not uploaded by QuickFile. We do not set tracking or advertising cookies.</div>
+<p class="meta">Last updated: November 19, 2026</p>
+<div class="box"><strong>In short:</strong> QuickFile has no accounts, no ads and no analytics. Your files are processed inside your browser and are not uploaded by QuickFile. We do not set tracking or advertising cookies. The only thing we store is a review or comment if you choose to write one.</div>
 
 <h2>1. Who we are</h2>
 <p>QuickFile (quick-files.vercel.app) provides free PDF and image tools. For any privacy question, contact us at <a href="mailto:QuickfilesV1.1@gmail.com">QuickfilesV1.1@gmail.com</a>.</p>
@@ -18,11 +18,13 @@
 
 <h2>3. Information we collect</h2>
 <p>We do not ask you to create an account and we do not collect names, emails or documents through the tools. If you email us, we receive your email address and message and use them only to reply to you.</p>
+<p><strong>Reviews and comments.</strong> If you write a review or comment on a tool page, we store what you type: the optional name you enter (or "Anonymous"), your star rating, your text, the page it is about and the time you sent it. Posts are checked by us before they appear, and once approved they are shown publicly on that page, so please do not include personal details, links or anything private. We do not store your IP address with your post. To limit spam, a one-way scrambled version of your IP address is kept in a counter for up to 24 hours and is then deleted automatically. To have a post removed, email us with the page and the wording and we will delete it.</p>
 
 <h2>4. Third-party services</h2>
 <ul>
 <li><strong>Hosting (Vercel):</strong> the site is hosted by Vercel, which may keep standard technical logs such as IP address, browser type and requested pages to run and secure the service.</li>
 <li><strong>Processing libraries (cdnjs / Cloudflare):</strong> when a tool needs it, your browser downloads open-source libraries (such as pdf-lib, pdf.js, JSZip and jsPDF) from cdnjs. That request is made directly by your browser, so the CDN can see your IP address and browser details. Your files are not part of these requests.</li>
+<li><strong>Reviews and comments storage (Upstash):</strong> reviews and comments are saved in a Redis database provided by Upstash. Your browser talks only to QuickFile; QuickFile's server code on Vercel talks to the database. Nothing from your files is ever sent there.</li>
 <li><strong>Search (Google):</strong> we use Google Search Console to see how our pages appear in Google Search. It does not track you as a visitor of this site.</li>
 </ul>
 

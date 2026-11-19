@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QuickFile moderation</title><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<style>body{margin:0;background:#0b1020;color:#e6ecff;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}main{max-width:860px;margin:0 auto;padding:24px 18px 60px}h1{font-size:26px;margin:.2em 0}
+input,select,button{font:inherit;border-radius:8px;border:1px solid #3a4a6a;background:#101a30;color:#fff;padding:9px 12px}button{cursor:pointer;background:linear-gradient(100deg,#1fbaff,#5256ff);border:0;font-weight:700}button.alt{background:#34415d}button.bad{background:#a8324a}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}.card{border:1px solid #334365;background:#17223a;border-radius:12px;padding:12px 16px;margin:10px 0}.meta{font-size:13px;color:#8f9cba}.txt{white-space:pre-wrap;overflow-wrap:anywhere;margin:6px 0}.msg{min-height:22px;color:#63e6b2}.msg.bad{color:#ff8a8a}</style></head>
+<body><main>
+<h1>QuickFile moderation</h1>
+<p class="meta">Private page. Nothing here is public until you press Approve.</p>
+<div class="row"><input id="key" type="password" placeholder="Admin key" aria-label="Admin key" autocomplete="off"><button id="go">Load waiting posts</button>
+<select id="tool" aria-label="Page"></select><button id="ap" class="alt">Show approved</button></div>
+<div class="msg" id="msg" role="status"></div><div id="list"></div>
+<script>
+const $=i=>document.getElementById(i),TOOLS=['home','jpg-to-pdf','pdf-to-jpg','merge-pdf','compress-pdf','lock-pdf','unlock-pdf','rotate-pdf','split-pdf','resize-image','image-to-jpg','pdf-to-word','add-watermark-to-pdf','add-page-numbers-to-pdf','remove-pdf-pages','compress-image','pdf-to-text','compress-pdf-to-target-size','compress-image-to-target-size','compress-image-to-20kb','compress-image-to-50kb','compress-image-to-100kb','compress-pdf-to-100kb','compress-pdf-to-200kb'];
+TOOLS.forEach(t=>{const o=document.createElement('option');o.value=o.textContent=t;$('tool').append(o)});
+try{$('key').value=sessionStorage.getItem('qfk')||''}catch(e){}
+const say=(m,b)=>{$('msg').textContent=m;$('msg').className='msg'+(b?' bad':'')};
+async function api(body){const k=$('key').value;try{sessionStorage.setItem('qfk',k)}catch(e){}const r=await fetch('/api/admin',{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':k},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error==='admin_not_configured'?'ADMIN_KEY is not set in Vercel yet.':j.error==='not_configured'?'The Redis database is not connected in Vercel yet.':(j.error||'Error '+r.status));return j}
+function card(x,mode){const c=document.createElement('div');c.className='card';const m=document.createElement('div');m.className='meta';m.textContent=`${x.tool} · ${x.kind}${x.rating?' · '+x.rating+'★':''} · ${x.name} · ${new Date(x.ts).toLocaleString()}`;const t=document.createElement('div');t.className='txt';t.textContent=x.text;const r=document.createElement('div');r.className='row';
+const mk=(label,cls,fn)=>{const b=document.createElement('button');b.textContent=label;if(cls)b.className=cls;b.onclick=async()=>{b.disabled=true;try{await fn();c.remove();say('Done.')}catch(e){say(e.message,1);b.disabled=false}};r.append(b)};
+if(mode==='pending'){mk('Approve','',()=>api({action:'approve',id:x.id}));mk('Reject','bad',()=>api({action:'reject',id:x.id}))}else mk('Remove from site','bad',()=>api({action:'remove',tool:x.tool,kind:x.kind,id:x.id}));
+c.append(m,t,r);return c}
+function show(items,mode){const l=$('list');l.replaceChildren();if(!items.length){say(mode==='pending'?'Nothing is waiting.':'Nothing approved on this page.');return}items.forEach(x=>l.append(card(x,mode)))}
+$('go').onclick=async()=>{say('Loading…');try{const j=await api({action:'pending'});say(`${j.total} waiting${j.total>j.items.length?' (showing the newest '+j.items.length+')':''}.`);show(j.items,'pending');if(!j.items.length)say('Nothing is waiting.')}catch(e){say(e.message,1)}};
+$('ap').onclick=async()=>{say('Loading…');try{const j=await api({action:'approved',tool:$('tool').value});show(j.items,'approved')}catch(e){say(e.message,1)}};
+</script></main></body></html>

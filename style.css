@@ -2,3 +2,31 @@
 .opts{display:flex;gap:14px;flex-wrap:wrap;align-items:center}.settings label{font-size:13px;color:#cbd4e9;display:flex;gap:8px;align-items:center}.settings input[type=text],.settings input[type=number],.settings input[type=password]{width:150px;padding:9px;border-radius:8px;background:#101a30;color:#fff;border:1px solid #3a4a6a}details{border:1px solid #334365;border-radius:12px;padding:12px 16px;margin:8px 0;background:#17223a}summary{cursor:pointer;font-weight:700}details p{color:var(--muted);font-size:14px;margin:8px 0 0}
 #cookieNotice{position:fixed;left:16px;right:16px;bottom:max(16px,env(safe-area-inset-bottom));max-width:760px;margin:0 auto;display:flex;gap:14px;align-items:center;justify-content:space-between;background:#17223a;border:1px solid #334365;color:#e6ecff;padding:14px 18px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.45);z-index:50;font-size:14px}#cookieNotice p{margin:0;line-height:1.45}#cookieNotice a,footer a{color:#8ab4ff}#cookieNotice button{flex:none;border:0;border-radius:10px;padding:9px 16px;font-weight:700;color:#fff;background:linear-gradient(135deg,#29a9ff,#6c63ff);cursor:pointer}@media(max-width:560px){#cookieNotice{flex-direction:column;align-items:stretch;text-align:center}}
 .toolpage .hero,.toolpage #tools,.toolpage .benefits,.toolpage #faq,.toolpage #more{display:none!important}.toolpage main.intro{max-width:1100px;margin:28px auto 0;padding:0 24px;text-align:center}.toolpage main.intro h1{font-size:clamp(30px,5vw,46px);margin:0 0 10px;color:#fff}.toolpage main.intro p{color:#a6b1ca;max-width:720px;margin:0 auto}.seo{max-width:900px;margin:36px auto;padding:0 24px;color:#c9d3ee;line-height:1.7}.seo h2{color:#fff;font-size:22px;margin:26px 0 8px}.seo ol{padding-left:22px}.seo a{color:#8ab4ff}.seo .links{display:flex;flex-wrap:wrap;gap:10px;padding:0;list-style:none}.seo .links a{display:block;padding:8px 14px;border:1px solid #334365;border-radius:999px;background:#17223a;text-decoration:none}
+
+/* ---- page guide text ---- */
+.seo ul.tips{padding-left:22px}.seo details{margin:8px 0}.seo summary{color:#fff}.seo p{margin:.6em 0}
+/* ---- reviews & comments ---- */
+.feedback{max-width:900px;margin:10px auto 48px;padding:0 24px;color:#c9d3ee;line-height:1.6}
+.seo .feedback{padding:0;margin:34px 0 0}
+.feedback h2{color:#fff;font-size:22px;margin:0 0 8px}.feedback h3{color:#fff;font-size:17px;margin:22px 0 8px}
+.fb-muted{color:#8f9cba;font-size:14px;margin:8px 0}.fb-summary{margin:6px 0 14px;font-size:16px}
+.fb-stars{color:#ffbd47;letter-spacing:2px;margin-right:6px}
+.fb-tabs{display:flex;gap:8px;border-bottom:1px solid #334365;margin:12px 0 4px}
+.fb-tab{background:transparent;border:0;border-bottom:3px solid transparent;color:#a6b1ca;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;min-height:44px}
+.fb-tab[aria-selected="true"]{color:#fff;border-bottom-color:#5b7bff}
+.fb-list{list-style:none;padding:0;margin:14px 0}.fb-item{border:1px solid #334365;background:#17223a;border-radius:12px;padding:12px 16px;margin:10px 0}
+.fb-meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-size:14px}.fb-date{color:#8f9cba}.fb-text{margin:6px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.fb-form{background:#121c32;border:1px solid #334365;border-radius:14px;padding:16px 18px;margin-top:18px}
+.fb-form label,.fb-form legend{display:block;font-size:14px;color:#cbd4e9;margin:12px 0 5px}
+.fb-form input[type=text],.fb-form textarea{width:100%;background:#101a30;color:#fff;border:1px solid #3a4a6a;border-radius:8px;padding:10px;font:inherit}
+.fb-form textarea{resize:vertical;min-height:96px}
+.fb-count{text-align:right;font-size:12px;color:#8f9cba}
+.fb-rate{border:0;padding:0;margin:0}.fb-starrow{position:relative;display:inline-flex;flex-direction:row-reverse}
+.fb-starrow input{position:absolute;opacity:0;width:1px;height:1px}
+.fb-starrow label{margin:0;padding:2px 3px;font-size:30px;line-height:1;color:#46557a;cursor:pointer}
+.fb-starrow input:checked~label,.fb-starrow label:hover,.fb-starrow label:hover~label{color:#ffbd47}
+.fb-starrow input:focus-visible+label{outline:2px solid #7fd2ff;outline-offset:2px;border-radius:6px}
+.fb-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.fb-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.fb-form .btn{margin-top:10px;min-height:44px}.fb-status{min-height:20px;font-size:14px;margin:10px 0 0}.fb-status.good{color:#63e6b2}.fb-status.bad{color:#ff8a8a}
+@media(max-width:600px){.feedback{padding:0 15px}.fb-form{padding:14px}}

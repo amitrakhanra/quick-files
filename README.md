@@ -1,6 +1,6 @@
 # QuickFile
 
-Free PDF and image tools that run **entirely in your browser**. No sign-up, no ads, and files are not uploaded by QuickFile.
+Free PDF and image tools that run **entirely in your browser**. No sign-up, no ads, and files are not uploaded by QuickFile. Each tool page also has moderated reviews and comments.
 
 **Live site:** https://quick-files.vercel.app/
 **Contact:** QuickfilesV1.1@gmail.com
@@ -27,7 +27,7 @@ Every tool has its own page and address, for example `/merge-pdf`, `/compress-pd
 
 ## How it works
 
-QuickFile is a static website made of plain HTML, CSS and JavaScript with no backend. When you use a tool, the file is read and processed by JavaScript in your browser, and the result is downloaded directly. Processing libraries are loaded from [cdnjs](https://cdnjs.com/) the first time a tool needs them:
+QuickFile is a static website made of plain HTML, CSS and JavaScript. The tools have no backend. The only server code is the small reviews/comments API in `api/` (see below). When you use a tool, the file is read and processed by JavaScript in your browser, and the result is downloaded directly. Processing libraries are loaded from [cdnjs](https://cdnjs.com/) the first time a tool needs them:
 
 - [pdf-lib](https://pdf-lib.js.org/) for merging, splitting, rotating, watermarks, page numbers and page removal
 - [pdf.js](https://mozilla.github.io/pdf.js/) for reading and rendering PDFs
@@ -41,7 +41,6 @@ An internet connection is needed to load these libraries.
 ```
 index.html                      Home page
 <tool-name>.html                One page per tool and preset (23 pages)
-
 style.css                       Shared styles
 app.js                          Shared tool logic and cookie notice
 privacy.html                    Privacy and cookie policy
@@ -86,3 +85,21 @@ No accounts, no ads and no analytics. The site stores a single value in local st
 ## License
 
 Add a license of your choice (for example MIT) before sharing the code publicly. Until then, all rights are reserved by the author.
+
+
+## Reviews and comments (setup)
+
+Every tool page and the home page show a reviews and comments section. Posts go into a moderation queue and appear only after you approve them. Files are never part of this.
+
+**Files:** `feedback.js` (the widget), `api/feedback.js` (public API), `api/admin.js` (moderation API), `api/_lib.js` (shared code), `admin.html` (your private moderation page).
+
+**One-time setup in Vercel**
+1. Open your project in Vercel, go to **Storage** (or the **Marketplace**), add **Upstash Redis** and connect it to this project. This adds the database address and token as environment variables automatically (`KV_REST_API_URL` / `KV_REST_API_TOKEN`, or `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`; both are supported).
+2. Go to **Settings, Environment Variables** and add `ADMIN_KEY` with a long random password only you know (20+ characters). Optionally add `IP_SALT` with another random string.
+3. **Redeploy** the project so the variables take effect.
+
+**Moderating:** open `https://your-site/admin.html`, enter the admin key and press *Load waiting posts*. Press **Approve** to publish or **Reject** to delete. Use *Show approved* to remove a post that is already live. Approved posts can take up to a minute to appear because pages are cached briefly.
+
+Until steps 1 to 3 are done, the section shows "Reviews and comments are not available right now" and the rest of the site works as normal.
+
+**Built-in protection:** posts are plain text only (no links, no email addresses), limited to 3 per hour and 10 per day per visitor, duplicates are blocked, a hidden bot trap and a minimum writing time are used, and the queue is capped at 500 waiting posts. The site does not add star-rating markup for search engines, because search engines can penalise sites that mark up reviews of themselves.
